@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const double buttomContainerHeight = 80.0;
+const activeColor = Color(0xFF1A1E33);
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -31,30 +34,41 @@ class _InputPageState extends State<InputPage> {
               // top row
               children: <Widget>[
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(bgColor: activeColor),
                 ),
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(bgColor: activeColor),
                 )
               ],
             ),
           ),
           Expanded(
-            child: ReusableCard(),
+            child: ReusableCard(bgColor: activeColor),
           ), // middle box
           Expanded(
             child: Row(
               // lower row
               children: <Widget>[
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(bgColor: activeColor),
                 ),
                 Expanded(
-                  child: ReusableCard(),
+                  child: ReusableCard(bgColor: activeColor),
                 )
               ],
             ),
           ),
+          Container(
+            child: Center(
+                child: Text(
+              'Calculate BMI',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            )),
+            color: Colors.pink,
+            margin: EdgeInsets.all(10),
+            width: double.infinity,
+            height: buttomContainerHeight,
+          )
         ],
       ),
       // floatingActionButton: FloatingActionButton(
@@ -65,15 +79,18 @@ class _InputPageState extends State<InputPage> {
 }
 
 class ReusableCard extends StatelessWidget {
-  const ReusableCard({
-    Key key,
-  }) : super(key: key);
+  // No need to use for this app.
+  // const ReusableCard({
+  //   Key key,
+  // }) : super(key: key);
+  final Color bgColor;
+  ReusableCard({@required this.bgColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(color: Color(0xFF1A1E33), borderRadius: BorderRadius.circular(15)),
+      decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(15)),
     );
   }
 }
