@@ -65,6 +65,7 @@ class _InputPageState extends State<InputPage> {
 
   int height = 180;
   int weight = 60;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -236,7 +237,46 @@ class _InputPageState extends State<InputPage> {
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(bgColor: kActiveColor),
+                  child: ReusableCard(
+                    bgColor: kActiveColor,
+                    childWidget: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Age',
+                          style: kWordStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kUnitStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            NewAppFloatingButton(
+                              inputIcon: FontAwesomeIcons.minus,
+                              onPressFunction: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            NewAppFloatingButton(
+                              inputIcon: FontAwesomeIcons.plus,
+                              onPressFunction: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 )
               ],
             ),
@@ -248,7 +288,7 @@ class _InputPageState extends State<InputPage> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             )),
             color: kButtomBarColor,
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(2),
             //decoration: BoxDecoration(color: buttomBarColor, borderRadius: BorderRadius.circular(15)),
             width: double.infinity,
             height: kButtomContainerHeight,
@@ -290,7 +330,7 @@ class NewAppFloatingButton extends StatelessWidget {
   final Function onPressFunction;
   final IconData inputIcon;
 
-  NewAppFloatingButton({this.inputIcon, this.onPressFunction});
+  NewAppFloatingButton({@required this.inputIcon, @required this.onPressFunction});
 
   @override
   Widget build(BuildContext context) {
@@ -300,7 +340,7 @@ class NewAppFloatingButton extends StatelessWidget {
       elevation: 6,
       shape: CircleBorder(),
       constraints: BoxConstraints.tightFor(width: 52, height: 52),
-      fillColor: Color(0xFF4C4F5E),
+      fillColor: Color(0x994C4F5E),
     );
   }
 }
