@@ -184,22 +184,48 @@ class _InputPageState extends State<InputPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            AppFloatButton(
-                              inputIcon: Icons.add,
-                              pressFunction: () {
+                            // comment since AppFloatButton(from FloatingActionButton cannot be used
+                            // more than once in the app follow by DArt team comment
+                            // https://api.flutter.dev/flutter/material/FloatingActionButton-class.html)
+                            // so beacuse of that we will create the appbutton from RawMaterialButton which
+                            // is the widget that used to create the Floating action, but we will only specific
+                            // something that need to be used.
+                            // AppFloatButton(
+                            //   inputIcon: Icons.add,
+                            //   pressFunction: () {
+                            //     setState(() {
+                            //       weight++;
+                            //     });
+                            //   },
+                            // ),
+                            // SizedBox(
+                            //   width: 10,
+                            // ),
+                            // AppFloatButton(
+                            //   inputIcon: Icons.edit,
+                            //   pressFunction: () {
+                            //     setState(() {
+                            //       weight--;
+                            //     });
+                            //   },
+                            // )
+                            NewAppFloatingButton(
+                              inputIcon: FontAwesomeIcons.minus,
+                              onPressFunction: () {
                                 setState(() {
-                                  weight++;
+                                  weight--;
                                 });
                               },
                             ),
                             SizedBox(
-                              width: 10,
+                              width: 16,
                             ),
-                            AppFloatButton(
-                              inputIcon: Icons.edit,
-                              pressFunction: () {
+
+                            NewAppFloatingButton(
+                              inputIcon: FontAwesomeIcons.plus,
+                              onPressFunction: () {
                                 setState(() {
-                                  weight--;
+                                  weight++;
                                 });
                               },
                             )
@@ -236,6 +262,7 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
+// no use because the Dart team comment that FloatingActionButton can be use once in one screen.
 class AppFloatButton extends StatelessWidget {
   // const AppFloatButton({
   //   Key key,
@@ -255,6 +282,25 @@ class AppFloatButton extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: pressFunction,
+    );
+  }
+}
+
+class NewAppFloatingButton extends StatelessWidget {
+  final Function onPressFunction;
+  final IconData inputIcon;
+
+  NewAppFloatingButton({this.inputIcon, this.onPressFunction});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(inputIcon),
+      onPressed: onPressFunction,
+      elevation: 6,
+      shape: CircleBorder(),
+      constraints: BoxConstraints.tightFor(width: 52, height: 52),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
