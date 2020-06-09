@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/reusable_card.dart';
 import 'constants.dart';
+import 'Buttombutton.dart';
+import 'newAppfloatingbutton.dart';
 
 enum Gender { male, female }
 
@@ -281,22 +283,11 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          ButtomButton(
+            ontab: () {
               Navigator.pushNamed(context, '/first');
             },
-            child: Container(
-              child: Center(
-                  child: Text(
-                'Calculate BMI',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              )),
-              color: kButtomBarColor,
-              margin: EdgeInsets.all(2),
-              //decoration: BoxDecoration(color: buttomBarColor, borderRadius: BorderRadius.circular(15)),
-              width: double.infinity,
-              height: kButtomContainerHeight,
-            ),
+            buttonTitle: 'CALCULATE',
           )
         ],
       ),
@@ -327,25 +318,6 @@ class AppFloatButton extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: pressFunction,
-    );
-  }
-}
-
-class NewAppFloatingButton extends StatelessWidget {
-  final Function onPressFunction;
-  final IconData inputIcon;
-
-  NewAppFloatingButton({@required this.inputIcon, @required this.onPressFunction});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(inputIcon),
-      onPressed: onPressFunction,
-      elevation: 6,
-      shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(width: 52, height: 52),
-      fillColor: Color(0x994C4F5E),
     );
   }
 }
