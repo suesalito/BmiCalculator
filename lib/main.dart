@@ -1,10 +1,12 @@
 import 'package:bmi_calculator/Screens/result.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/Screens/input_page.dart';
+import 'package:bmi_calculator/calculator.dart';
 
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
+  Calculator calc = Calculator();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,6 +24,7 @@ class BMICalculator extends StatelessWidget {
         // When navigating to the "/" route, build the Screen0 widget.
         '/': (context) => InputPage(),
         // When navigating to the "/first" route, build the Screen1 widget.
+        //ResultPage.routeName: (context) => ResultPage(),
         '/first': (context) => ResultPage(),
       },
     );

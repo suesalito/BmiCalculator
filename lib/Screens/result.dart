@@ -2,10 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/Components/reusable_card.dart';
 import 'package:bmi_calculator/Components/Buttombutton.dart';
+import 'package:bmi_calculator/calculator.dart';
 
 class ResultPage extends StatelessWidget {
+  ResultPage({this.bmiResult, this.bmiScore, this.bmiComment});
+
+  static const routeName = '/passArguments';
+  final String bmiResult;
+  final String bmiScore;
+  final String bmiComment;
+
+  //Calculator calc = Calculator();
+
   @override
   Widget build(BuildContext context) {
+    final ResultPage bmiArgs = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(title: Text('Your BMI Result!')),
       body: Column(
@@ -22,17 +33,19 @@ class ResultPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      'Normal',
+                      bmiArgs.bmiResult,
                       textAlign: TextAlign.center,
                       style: kResultTextStyle,
                     ),
                     Text(
-                      '17.2',
+                      bmiArgs.bmiScore,
+                      //calc.calculateBMI(),
                       textAlign: TextAlign.center,
                       style: kBMITextStyle,
                     ),
                     Text(
-                      'You have a good BMI, keep working out and stay shape!',
+                      bmiArgs.bmiComment,
+                      //calc.getInterpretation(),
                       textAlign: TextAlign.center,
                       style: kBodyTextStyle,
                     ),
